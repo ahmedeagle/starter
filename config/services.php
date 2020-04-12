@@ -35,4 +35,9 @@ return [
         'client_secret' => env ( 'FB_CLIENT_SECRET' ),
         'redirect' => env ( 'FB_REDIRECT' )
     ],
+    'github' => [
+        'client_id' => env ( 'Github_CLIENT_ID' ),
+        'client_secret' => env ( 'Github_CLIENT_SECRET' ),
+        'redirect' => env ( 'Github_REDIRECT' )
+    ],
 ];

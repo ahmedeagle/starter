@@ -11,12 +11,12 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"> Email</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right"> Email Or mobile</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required  autofocus>
+                                <input id="identify" type="text" class="form-control @error('identify') is-invalid @enderror" name="identify" value="{{ old('identify') }}" required  >
 
-                                @error('email')
+                                @error('identify')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
