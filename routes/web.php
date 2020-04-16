@@ -1,27 +1,39 @@
 <?php
 
-Auth::routes(['verify'=>true]);
+use App\Mail\NotifyEmail;
+use Illuminate\Support\Facades\Mail;
 
-Route::get('/home', 'HomeController@index')->name('home') ->middleware('verified');
+Auth::routes(['verify' => true]);
 
-Route::get('/',function(){
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-    return 'Home';
+Route::get('/', function () {
+
+    //return 'Home';
+    $data = ['title' => 'progrmming', 'body' => 'php'];
+    Mail::To('dhhfsdsd@gmail.com')->send(new NotifyEmail($data));
 });
 
 
-
-Route::get('/dashboard',function(){
+Route::get('/dashboard', function () {
 
     return 'dashboard';
 });
 
-Route::get('/redirect/{service}','SocialController@redirect');
+Route::get('/redirect/{service}', 'SocialController@redirect');
 
-Route::get('/callback/{service}','SocialController@callback');
+Route::get('/callback/{service}', 'SocialController@callback');
 
 
+Route::get('fillable', 'CrudController@getOffers');
 
+
+Route::group(['prefix' => 'offers'], function () {
+ //   Route::get('store', 'CrudController@store');
+    Route::get('create','CrudController@create');
+    Route::post('store','CrudController@store') -> name('offers.store');
+
+});
 
 
 
