@@ -65,7 +65,7 @@ class CrudController extends Controller
     {
 
         return $messages = [
-            'name.required' => 'اسم العرض مطلوب',
+            'name.required' => __('messages.offer name required'),
             'name.unique' => 'اسم العرض موجود ',
             'price.numeric' => 'سعر العرض يجب ان يكون ارقام',
             'price.required' => 'السعر مطلوب',

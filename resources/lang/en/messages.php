@@ -15,5 +15,7 @@ return [
 
     "hello gus" => 'Hello GUS',
     "welcom" => 'WELCOME ',
+    "offer name required" => 'Offer Name Required',
+    "offer name must be unique"  => "offer name must be unique",
 
 ];

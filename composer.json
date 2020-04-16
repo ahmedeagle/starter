@@ -13,7 +13,8 @@
         "laravel/framework": "^6.2",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^1.2"
+        "laravel/ui": "^1.2",
+        "mcamara/laravel-localization": "^1.5"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
