@@ -18,9 +18,13 @@ return [
     "offer name required" => 'Offer Name Required',
     "offer name must be unique"  => "offer name must be unique",
     "Add your offer" => 'Add your offer ',
-    "Offer Name"   => 'Offer Name',
+    "Offer Name ar"   => 'Arabic Offer Name',
+    "Offer Name en"   => 'English Offer Name',
     "Offer Price"  => 'Offer Price',
-    "Offer details" => 'Offer Details',
-    "Save Offer"  => 'Save'
+    "Offer details ar" => 'ar Offer Details',
+    "Offer details en" => 'en Offer Details',
+    "Save Offer"  => 'Save',
+    "Offer Name" => "Offer Name",
+    "Offer details" => "Offer details"
 
 ];
