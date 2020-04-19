@@ -114,7 +114,7 @@
         @endif
 
         <br>
-        <form method="POST" action="{{route('offers.store')}}" enctype="multipart/form-data">
+        <form method="POST" {{--action="{{route('offers.store')}}"  --}} enctype="multipart/form-data">
             @csrf
             {{-- <input name="_token" value="{{csrf_token()}}"> --}}
 
@@ -177,5 +177,45 @@
 
     </div>
 </div>
+
+
+<script
+    src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    //get provider branches
+    $(document).on('change', '#providers', function (e) {
+        e.preventDefault();
+        $('#branchTimesDiv').empty();
+        $.ajax({
+
+            type: 'post',
+            url: "{{Route('admin.offers.providerbranches')}}",
+            data: {
+                'parent_id': $(this).val(),
+                //'_token'   :   $('meta[name="csrf-token"]').attr('content'),
+            },
+            success: function (data) {
+                $('.appendbrnaches').empty().append(data.content);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+        $('.js-example-basic-multiple').select2();
+    });
+
+</script>
+
+
 </body>
 </html>

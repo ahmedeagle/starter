@@ -24,7 +24,10 @@ return [
     "Offer details ar" => 'ar Offer Details',
     "Offer details en" => 'en Offer Details',
     "Save Offer"  => 'Save',
-    "Offer Name" => "Offer Name",
-    "Offer details" => "Offer details"
+    "Offer Name" => "Offer offer name requiredName",
+    "Offer details" => "Offer details",
+    "operation" => "operation",
+    "update" => "Update",
+    "Update your offer"  => "Update your offer  "
 
 ];
