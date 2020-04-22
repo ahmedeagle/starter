@@ -29,6 +29,9 @@ return [
     "operation" => 'العمليات',
     "update" => 'تحديث',
     "Offer details" => 'تفاصيل العرض',
-    "Update your offer"  => "تعديل العرض "
+    "Update your offer"  => "تعديل العرض ",
+    "delete"  => 'حذف',
+    "offer not exist"  => 'العرض غير موجود',
+    "offer deleted successfully" => 'تم حذف العرض بنجاح',
 
  ];
