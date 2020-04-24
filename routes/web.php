@@ -51,8 +51,9 @@ Route::group(['prefix' => 'ajax-offers'],function(){
     Route::post('store','OfferController@store') -> name('ajax.offers.store');
     Route::get('all','OfferController@all') -> name('ajax.offers.all');
     Route::post('delete','OfferController@delete')->name('ajax.offers.delete');
+    Route::get('edit/{offer_id}', 'OfferController@edit')->name('ajax.offers.edit');
+    Route::post('update', 'OfferController@Update')->name('ajax.offers.update');
 });
-
 ###################### End Ajax routes #####################
 
 

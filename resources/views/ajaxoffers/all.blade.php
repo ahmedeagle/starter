@@ -34,6 +34,7 @@
                     <a href="{{route('offers.delete',$offer -> id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
 
                     <a href="" offer_id="{{$offer -> id}}"  class="delete_btn btn btn-danger"> حذف اجاكس     </a>
+                    <a href="{{route('ajax.offers.edit',$offer -> id)}}" class="btn btn-success"> تعديل</a>
                 </td>
 
             </tr>
