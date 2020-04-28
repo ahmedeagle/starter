@@ -41,7 +41,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('all', 'CrudController@getAllOffers')->name('offers.all');
     });
 
-    Route::get('youtube', 'CrudController@getVideo');
+    Route::get('youtube', 'CrudController@getVideo') ->middleware('auth');
 });
 
 
@@ -62,10 +62,13 @@ Route::group(['prefix' => 'ajax-offers'], function () {
 Route::group(['middleware' => 'CheckAge','namespace' => 'Auth'], function () {
     Route::get('adults', 'CustomAuthController@adualt')-> name('adult');
 });
+                                                                //middleware('auth')
+Route::get('site', 'Auth\CustomAuthController@site')->middleware('auth:web')-> name('site');
+Route::get('admin', 'Auth\CustomAuthController@admin')->middleware('auth:admin') -> name('admin');
 
+Route::get('admin/login', 'Auth\CustomAuthController@adminLogin')-> name('admin.login');
+Route::post('admin/login', 'Auth\CustomAuthController@checkAdminLogin')-> name('save.admin.login');
 
-Route::get('site', 'Auth\CustomAuthController@site')-> name('site');
-Route::get('admin', 'Auth\CustomAuthController@admin')-> name('admin');
 
 ##################### End Authentication && Guards ##############
 

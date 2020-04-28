@@ -12,11 +12,11 @@
 */
 
 
-
+/*
 Route::get('/admin', function () {
 
      return 'hellow admin';
-});
+});*/
 
 
 
