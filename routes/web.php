@@ -73,5 +73,20 @@ Route::post('admin/login', 'Auth\CustomAuthController@checkAdminLogin')-> name('
 ##################### End Authentication && Guards ##############
 
 
+################### Begin relations  routes ######################
+
+Route::get('has-one','Relation\RelationsController@hasOneRelation');
+
+Route::get('has-one-reserve','Relation\RelationsController@hasOneRelationReverse');
+
+Route::get('get-user-has-phone','Relation\RelationsController@getUserHasPhone');
+
+Route::get('get-user-has-phone-with-condition','Relation\RelationsController@getUserWhereHasPhoneWithCondition');
+
+Route::get('get-user-not-has-phone','Relation\RelationsController@getUserNotHasPhone');
+
+
+################### End relations  routes ########################
+
 
 
