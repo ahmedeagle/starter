@@ -88,9 +88,11 @@ Route::get('get-user-not-has-phone','Relation\RelationsController@getUserNotHasP
 ################## Begin one To many Relationship #####################
 Route::get('hospital-has-many','Relation\RelationsController@getHospitalDoctors');
 
-Route::get('hospitals','Relation\RelationsController@hospitals');
+Route::get('hospitals','Relation\RelationsController@hospitals') -> name('hospital.all');
 
 Route::get('doctors/{hospital_id}','Relation\RelationsController@doctors')-> name('hospital.doctors');
+
+Route::get('hospitals/{hospital_id}','Relation\RelationsController@deleteHospital') -> name('hospital.delete');
 
 Route::get('hospitals_has_doctors','Relation\RelationsController@hospitalsHasDoctor');
 

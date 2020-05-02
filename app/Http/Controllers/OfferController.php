@@ -20,7 +20,7 @@ class OfferController extends Controller
         return view('ajaxoffers.create');
     }
 
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
         //save offer into DB using AJAX
 
