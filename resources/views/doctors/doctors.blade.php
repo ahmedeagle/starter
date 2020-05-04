@@ -18,6 +18,7 @@
                         <th scope="col">#</th>
                         <th scope="col">name</th>
                         <th scope="col">title</th>
+                        <th scope="col">operation</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                                 <th scope="row">{{$doctor -> id}}</th>
                                 <td>{{$doctor -> name}}</td>
                                 <td>{{$doctor -> title}}</td>
+                                <td><a href="{{route('doctors.services',$doctor -> id)}}" class="btn btn-success">عرض الخدمات </a></td>
                             </tr>
                         @endforeach
                     @endif

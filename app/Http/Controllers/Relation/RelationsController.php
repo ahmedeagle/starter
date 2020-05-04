@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Phone;
+use App\Models\Service;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -133,4 +134,39 @@ class RelationsController extends Controller
 
         //return redirect() -> route('hospital.all');
     }
+
+    public function getDoctorServices()
+    {
+        return $doctor = Doctor::with('services')->find(3);
+        //  return $doctor -> services;
+    }
+
+    public function getServiceDoctors()
+    {
+        return $doctors = Service::with(['doctors' => function ($q) {
+            $q->select('doctors.id', 'name', 'title');
+        }])->find(1);
+    }
+
+    public function getDoctorServicesById($doctorId){
+        $doctor = Doctor::find($doctorId);
+        $services = $doctor -> services;  //doctor services
+
+        $doctors = Doctor::select('id','name') -> get();
+        $allServices = Service::select('id','name') -> get(); // all db serves
+
+        return view('doctors.services',compact('services','doctors','allServices'));
+    }
+
+
+    public function saveServicesToDoctors(Request $request){
+
+        $doctor = Doctor::find($request -> doctor_id);
+        if(!$doctor)
+            return abort('404');
+        $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
+
+        return 'success';
+    }
+
 }
