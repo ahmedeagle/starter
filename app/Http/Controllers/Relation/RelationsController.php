@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Relation;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Hospital;
+use App\Models\Patient;
 use App\Models\Phone;
 use App\Models\Service;
 use App\User;
@@ -165,14 +166,14 @@ class RelationsController extends Controller
         if(!$doctor)
             return abort('404');
        // $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
-
         //$doctor ->services()-> sync($request -> servicesIds);
-
         $doctor ->services()-> syncWithoutDetaching($request -> servicesIds);
-
-
-
         return 'success';
+    }
+
+    public function getPatientDoctor(){
+        $patient =  Patient::find(2);
+        return $patient -> doctor;
     }
 
 }
