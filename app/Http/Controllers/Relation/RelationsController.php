@@ -164,7 +164,13 @@ class RelationsController extends Controller
         $doctor = Doctor::find($request -> doctor_id);
         if(!$doctor)
             return abort('404');
-        $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
+       // $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
+
+        //$doctor ->services()-> sync($request -> servicesIds);
+
+        $doctor ->services()-> syncWithoutDetaching($request -> servicesIds);
+
+
 
         return 'success';
     }
