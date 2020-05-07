@@ -102,13 +102,28 @@ class CrudController extends Controller
 
     public function getAllOffers()
     {
-        $offers = Offer::select('id',
+       /* $offers = Offer::select('id',
             'price',
             'photo',
             'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
             'details_' . LaravelLocalization::getCurrentLocale() . ' as details'
-        )->get(); // return collection
-        return view('offers.all', compact('offers'));
+        )->get(); // return collection of all result*/
+
+
+       ##################### paginate result ####################
+         $offers = Offer::select('id',
+            'price',
+            'photo',
+            'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
+            'details_' . LaravelLocalization::getCurrentLocale() . ' as details'
+        )->paginate(PAGINATION_COUNT);
+
+
+
+        //return view('offers.all', compact('offers'));
+
+
+        return view('offers.paginations',compact('offers'));
     }
 
 
@@ -172,5 +187,15 @@ class CrudController extends Controller
         $video = Video::first();
         event(new VideoViewer($video)); //fire event
         return view('video')->with('video', $video);
+    }
+
+
+    public function getAllInactiveOffers(){
+
+          // where  whereNull whereNotNull whereIn
+          //Offer::whereNotNull('details_ar') -> get();
+
+
+         return  $inactiveOffers = Offer::invalid()->get();  //all inactive offers
     }
 }

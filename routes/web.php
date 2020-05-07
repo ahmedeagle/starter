@@ -3,6 +3,7 @@
 use App\Mail\NotifyEmail;
 use Illuminate\Support\Facades\Mail;
 
+define('PAGINATION_COUNT',3);
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -39,6 +40,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('update/{offer_id}', 'CrudController@UpdateOffer')->name('offers.update');
         Route::get('delete/{offer_id}', 'CrudController@delete')->name('offers.delete');
         Route::get('all', 'CrudController@getAllOffers')->name('offers.all');
+        Route::get('get-all-inactive-offer', 'CrudController@getAllInactiveOffers');
+
     });
 
     Route::get('youtube', 'CrudController@getVideo') ->middleware('auth');
@@ -127,7 +130,6 @@ Route::post('saveServices-to-doctor','Relation\RelationsController@saveServicesT
 Route::get('has-one-through','Relation\RelationsController@getPatientDoctor');
 
 Route::get('has-many-through','Relation\RelationsController@getCountryDoctor');
-
 
 
 ################### End relations  routes ########################
