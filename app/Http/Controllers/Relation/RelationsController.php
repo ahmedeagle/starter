@@ -150,37 +150,53 @@ class RelationsController extends Controller
         }])->find(1);
     }
 
-    public function getDoctorServicesById($doctorId){
+    public function getDoctorServicesById($doctorId)
+    {
         $doctor = Doctor::find($doctorId);
-        $services = $doctor -> services;  //doctor services
+        $services = $doctor->services;  //doctor services
 
-        $doctors = Doctor::select('id','name') -> get();
-        $allServices = Service::select('id','name') -> get(); // all db serves
+        $doctors = Doctor::select('id', 'name')->get();
+        $allServices = Service::select('id', 'name')->get(); // all db serves
 
-        return view('doctors.services',compact('services','doctors','allServices'));
+        return view('doctors.services', compact('services', 'doctors', 'allServices'));
     }
 
 
-    public function saveServicesToDoctors(Request $request){
+    public function saveServicesToDoctors(Request $request)
+    {
 
-        $doctor = Doctor::find($request -> doctor_id);
-        if(!$doctor)
+        $doctor = Doctor::find($request->doctor_id);
+        if (!$doctor)
             return abort('404');
-       // $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
+        // $doctor ->services()-> attach($request -> servicesIds);  // many to many insert to database
         //$doctor ->services()-> sync($request -> servicesIds);
-        $doctor ->services()-> syncWithoutDetaching($request -> servicesIds);
+        $doctor->services()->syncWithoutDetaching($request->servicesIds);
         return 'success';
     }
 
-    public function getPatientDoctor(){
-        $patient =  Patient::find(2);
-        return $patient -> doctor;
+    public function getPatientDoctor()
+    {
+        $patient = Patient::find(2);
+        return $patient->doctor;
     }
 
-    public function getCountryDoctor(){
-         $country = Country::find(1);
-        return $country -> doctors;
+    public function getCountryDoctor()
+    {
+        $country = Country::find(1);
+        return $country->doctors;
     }
 
 
+    public function getDoctors()
+    {
+        return $doctors = Doctor::select('id', 'name', 'gender')->get();
+       /* if (isset($doctors) && $doctors->count() > 0) {
+            foreach ($doctors as $doctor) {
+
+                $doctor->gender = $doctor->gender == 1 ? 'male' : 'female';
+                // $doctor -> newVal = 'new';
+            }
+        }
+        return $doctors;*/
+    }
 }

@@ -135,4 +135,9 @@ Route::get('has-many-through','Relation\RelationsController@getCountryDoctor');
 ################### End relations  routes ########################
 
 
+#######################  Begin accessors and mutators ###################
+
+Route::get('accessors','Relation\RelationsController@getDoctors'); //get data
+
+#######################  End accessors and mutators ###################
 

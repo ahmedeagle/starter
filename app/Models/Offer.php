@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\OfferScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
@@ -12,6 +13,12 @@ class Offer extends Model
 
     // public $timestamps = true;
 
+    //register global scope
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new OfferScope);
+    }
 
 
     ######################### local scopes ####################
@@ -22,9 +29,15 @@ class Offer extends Model
 
     public function scopeInvalid($query)
     {
-        return $query->where('status',0)->whereNull('details_ar');
+        return $query->where('status', 0)->whereNull('details_ar');
     }
 
     #########################################################
 
+    //mutators
+
+    public function setNameEnAttribute($value)
+    {
+        $this->attributes['name_en'] = strtoupper($value);
+    }
 }

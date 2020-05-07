@@ -6,6 +6,7 @@ use App\Events\VideoViewer;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use App\Models\Video;
+use App\Scopes\OfferScope;
 use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -67,8 +68,8 @@ class CrudController extends Controller
         Offer::create([
             'photo' => $file_name,
             'name_ar' => $request->name_ar,
-            'name_en' => $request->name_en,
-            'price' => $request->price,
+            'name_en' =>   $request->name_en,
+            'price' =>  $request->price,
             'details_ar' => $request->details_ar,
             'details_en' => $request->details_en,
         ]);
@@ -195,7 +196,15 @@ class CrudController extends Controller
           // where  whereNull whereNotNull whereIn
           //Offer::whereNotNull('details_ar') -> get();
 
+         //return  $inactiveOffers = Offer::inactive()->get();  //all inactive offers
 
-         return  $inactiveOffers = Offer::invalid()->get();  //all inactive offers
+                                    // global scope
+        // return  $inactiveOffers = Offer::get();  //all inactive offers
+
+                // how to  remove global scope
+
+            return $offer  = Offer::withoutGlobalScope(OfferScope::class)->get();
+
+
     }
 }
